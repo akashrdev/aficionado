@@ -30,8 +30,7 @@ const InputReview = ({ username, setUserAddedReview }) => {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGUxZjM0YmYwODg5NmI1YjNkMTNkMDRmMTRiZjYzZCIsInN1YiI6IjY0YmU4M2Y0MGVkMmFiMDBjNWU0MzFjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-GDaN1OavPd-49ZLgrhxn1LhE_xsv02gCgutHud90RI',
+        Authorization: import.meta.env.VITE_TMDB_TOKEN,
       },
     };
     axios.get(url, options).then((response) => {
