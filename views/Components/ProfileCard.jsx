@@ -13,6 +13,7 @@ const ProfileCard = () => {
   const usernameHandler = (event) => {
     console.log('clicked!');
   };
+
   const passwordHandler = (event) => {
     console.log('clicked!');
   };

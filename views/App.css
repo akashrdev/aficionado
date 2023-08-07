@@ -1,25 +1,50 @@
+/* body {
+  background-color: #14181c;
+  background-image: url(https://s2.ltrbxd.com/static/img/content-bg.0d9a0f0f.png);
+  background-position-x: 0px;
+  background-position-y: -1px;
+  background-size: initial;
+  background-repeat-x: repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  color: white;
+}
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  color: #99aabb;
+} */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* background: linear-gradient(to right, #8360c3, #2ebf91); */
+  /* background-image: linear-gradient(to right, #141e30, #243b55); */
 }
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+}
 
-  /* color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
-
-  font-synthesis: none;
+/* font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+  -webkit-text-size-adjust: 100%; */
+/* } */
 
 /* a {
   font-weight: 500;

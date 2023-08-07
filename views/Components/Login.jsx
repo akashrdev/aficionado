@@ -1,6 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -14,6 +15,14 @@ const Login = ({
 }) => {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#04CA97',
+      },
+    },
+  });
 
   const usernameHandler = (event) => {
     setUsername(event.target.value);
@@ -57,9 +66,10 @@ const Login = ({
       sx={{
         m: 1,
         width: '25ch',
-        borderColor: 'black',
         border: 'solid',
         borderRadius: '8%',
+        // backgroundColor: '#2c2c2c',
+        borderColor: 'black',
       }}
       noValidate
       autoComplete="off"
@@ -73,6 +83,15 @@ const Login = ({
         lable="Username"
         helperText="Username"
         onChange={usernameHandler}
+        // sx={{
+        //   color: 'white', // Changes the color of the text
+        //   '.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+        //     borderColor: 'white', // Changes the border color
+        //   },
+        //   '& .MuiFormHelperText-root': {
+        //     color: 'white',
+        //   },
+        // }}
       />
       <TextField
         required
@@ -82,10 +101,26 @@ const Login = ({
         lable="Password"
         helperText={loginError === false ? 'Password' : 'Login failed'}
         onChange={passwordHandler}
+        // sx={{
+        //   color: 'white', // Changes the color of the text
+        //   '.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+        //     borderColor: 'white', // Changes the border color
+        //   },
+        //   '& .MuiFormHelperText-root': {
+        //     color: 'white', // Changes the helper text color
+        //   },
+        // }}
       />
-      <Button type="submit" variant="contained" sx={{ m: 1, width: '15ch' }}>
-        Submit
-      </Button>
+      <ThemeProvider theme={theme}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ m: 1, width: '15ch' }}
+        >
+          Submit
+        </Button>
+      </ThemeProvider>
     </Stack>
   );
 };

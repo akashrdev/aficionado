@@ -26,7 +26,7 @@ const Feed = ({ setUserAddedReview, userAddedReview }) => {
   }, [userAddedReview]);
 
   return (
-    <Stack>
+    <Stack spacing={2}>
       {recentReviews.map((review) => {
         return (
           <Review

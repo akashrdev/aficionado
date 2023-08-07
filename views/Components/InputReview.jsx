@@ -39,7 +39,6 @@ const InputReview = ({ username, setUserAddedReview }) => {
   };
 
   const handleSelect = (event, value) => {
-    // console.log(value.backdrop_path);
     let imageURL = `https://image.tmdb.org/t/p/original${value.backdrop_path}`;
     setImage(imageURL);
     setCurrentMovie(value);

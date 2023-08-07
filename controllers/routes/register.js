@@ -17,8 +17,6 @@ router.post('/', async (req, res) => {
       },
     });
 
-    console.log('User created', newUser);
-
     res.send('User created successfully');
   } catch (error) {
     res.send('ERROR CREATING USER');

@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
         date: 'desc',
       },
     });
+
     const usernames = reviews.map((review) => review.user_name);
 
     const users = await prisma.user.findMany({

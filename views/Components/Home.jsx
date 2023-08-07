@@ -8,6 +8,7 @@ import Feed from './Feed.jsx';
 import Review from './Review.jsx';
 import Header from './Header.jsx';
 import ProfileCard from './ProfileCard.jsx';
+import NowPlaying from './NowPlaying.jsx';
 import { useCookies } from 'react-cookie';
 
 const Home = () => {
@@ -47,32 +48,45 @@ const Home = () => {
               userAddedReview={userAddedReview}
             />
           </Box>
+          <Box>
+            <NowPlaying />
+          </Box>
         </Stack>
       )}
       {cookies.isLoggedIn && (
         <Stack
-          direction="column"
+          direction="row"
           display="flex"
           justifyContent="center"
           alignItems="flex-start"
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          sx={{ width: '100%' }}
+          spacing={5}
         >
-          <Box
-            sx={{
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+          <Stack
+            direction="column"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: '50%' }} // adjust this value as needed
           >
-            <InputReview
-              username={username}
-              setUserAddedReview={setUserAddedReview}
-            />
-          </Box>
-          <Box>
-            <Feed userAddedReview={userAddedReview} />
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <InputReview
+                username={username}
+                setUserAddedReview={setUserAddedReview}
+              />
+            </Box>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Feed userAddedReview={userAddedReview} />
+            </Box>
+          </Stack>
+
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ paddingTop: '8.3%' }}
+          >
+            <NowPlaying />
           </Box>
         </Stack>
       )}

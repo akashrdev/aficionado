@@ -30,13 +30,15 @@ function Header() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#FFFFFF',
+        main: '#FFFF',
       },
     },
   });
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -51,7 +53,7 @@ function Header() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static">
+      <AppBar position="static" id="AppBar">
         <Container maxWidth="xl">
           <Toolbar
             disableGutters
@@ -79,7 +81,6 @@ function Header() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
                 textDecoration: 'none',
               }}
             >
@@ -98,7 +99,6 @@ function Header() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
                 textDecoration: 'none',
               }}
             >
