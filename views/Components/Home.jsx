@@ -9,6 +9,7 @@ import Review from './Review.jsx';
 import Header from './Header.jsx';
 import ProfileCard from './ProfileCard.jsx';
 import NowPlaying from './NowPlaying.jsx';
+import UserMenu from './UserMenu.jsx';
 import { useCookies } from 'react-cookie';
 
 const Home = () => {
@@ -21,18 +22,13 @@ const Home = () => {
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [userAddedReview, setUserAddedReview] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Header />
       {!cookies.isLoggedIn && (
-        <Stack
-          direction="row"
-          display="flex"
-          spacing={25}
-          sx={{ marginTop: '5%' }}
-        >
-          <Box>
+        <div className="flex flex-row">
+          <div className="flex justify-start w-screen">
             <Login
               setIsLoggedIn={setIsLoggedIn}
               setUsername={setUsername}
@@ -41,54 +37,42 @@ const Home = () => {
               setCookie={setCookie}
               removeCookie={removeCookie}
             />
-          </Box>
-          <Box>
+          </div>
+          <div className="flex justify-center">
             <Feed
               setUserAddedReview={setUserAddedReview}
               userAddedReview={userAddedReview}
             />
-          </Box>
-          <Box>
+          </div>
+          <div className="flex justify-end">
             <NowPlaying />
-          </Box>
-        </Stack>
+          </div>
+        </div>
       )}
       {cookies.isLoggedIn && (
-        <Stack
-          direction="row"
-          display="flex"
-          justifyContent="center"
-          alignItems="flex-start"
-          sx={{ width: '100%' }}
-          spacing={5}
-        >
-          <Stack
-            direction="column"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ width: '50%' }} // adjust this value as needed
-          >
-            <Box display="flex" justifyContent="center" alignItems="center">
+        <div className="flex bg-zinc-950 p-6">
+          <div className="w-1/4">
+            <UserMenu open={open} setOpen={setOpen} />
+          </div>
+
+          <div className="flex flex-col justify-center mx-auto w-2/5">
+            <div className="flex justify-center border border-zinc-700 p-6">
               <InputReview
                 username={username}
+                open={open}
+                setOpen={setOpen}
                 setUserAddedReview={setUserAddedReview}
               />
-            </Box>
-            <Box display="flex" justifyContent="center" alignItems="center">
+            </div>
+            <div className="flex justify-center border border-zinc-700">
               <Feed userAddedReview={userAddedReview} />
-            </Box>
-          </Stack>
+            </div>
+          </div>
 
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ paddingTop: '8.3%' }}
-          >
+          <div className="w-1/4 flex justify-end">
             <NowPlaying />
-          </Box>
-        </Stack>
+          </div>
+        </div>
       )}
     </>
   );

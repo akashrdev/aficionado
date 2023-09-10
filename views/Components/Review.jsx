@@ -1,16 +1,6 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SvgIcon from '@mui/material/SvgIcon';
-import { red } from '@mui/material/colors';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
@@ -51,78 +41,50 @@ const Review = ({
     }
   };
   return (
-    <Card
-      sx={{
-        maxWidth: 345,
-        // backgroundColor: '#14181c',
-        // backgroundImage:
-        //   'url(https://s2.ltrbxd.com/static/img/content-bg.0d9a0f0f.png)',
-        // backgroundRepeat: 'repeat-x',
-        // backgroundPositionX: 0,
-        // backgroundPositionY: -1,
-        // backgroundSize: 'initial',
-        // backgroundAttachment: 'initial',
-        // backgroundOrigin: 'initial',
-        // backgroundClip: 'initial',
-        textAlign: 'center',
-      }}
+    <div
+      className="w-full h-80 border-b border-zinc-700 flex flex-col items-center  "
       id="review"
     >
-      <CardHeader
-        avatar={<Avatar src={reviewProfilePicture} aria-label="profile" />}
-        title={
-          <Typography
-            variant="h7"
-            align="center"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              paddingRight: '25px',
-            }}
-          >
-            {reviewMovieOrTv}
-          </Typography>
-        }
-        subheader={
-          <Typography
-            variant="body2"
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              paddingRight: '25px',
-            }}
-          >
-            @{reviewUsername}
-          </Typography>
-        }
-      />
-      <CardMedia component="img" height="194" image={reviewImage} alt="movie" />
-      <Typography variant="body2">{formatDate(reviewDate)}</Typography>
-      <CardContent>
-        <Rating name="read-only" value={reviewRating} readOnly />
-        <Typography variant="body2">{reviewText}</Typography>
-      </CardContent>
-      <IconButton aria-label="comment" style={{ marginRight: '10px' }}>
-        <MapsUgcIcon style={{ fontSize: 'large', color: '#99aabb' }} />
-      </IconButton>
-      <IconButton aria-label="add to favorites" style={{ marginRight: '10px' }}>
-        <Badge
-          badgeContent={5}
-          sx={{
-            '& .MuiBadge-badge': {
-              fontSize: '0.7rem',
+      <div className="w-full flex items-center mb-2">
+        <img
+          className="h-14 w-14 rounded-full"
+          src={reviewProfilePicture}
+          alt="Profile Picture"
+        />
 
-              transform: 'scale(1) translate(80%, 0%)',
-            },
-          }}
-        >
-          <FavoriteIcon style={{ fontSize: 'large', color: '#99aabb' }} />
-        </Badge>
-      </IconButton>
-      <IconButton aria-label="share" style={{ marginRight: '10px' }}>
-        <IosShareIcon style={{ fontSize: 'large', color: '#99aabb' }} />
-      </IconButton>
-    </Card>
+        <div className="flex flex-col mx-auto text-center">
+          <h5 className="text-xl text-zinc-100">{reviewMovieOrTv}</h5>
+          <p className="text-sm text-zinc-100">@{reviewUsername}</p>
+        </div>
+
+        <div className="mr-4"></div>
+      </div>
+
+      <img className="mx-auto h-52 rounded-lg" src={reviewImage} alt="movie" />
+
+      <p className="mx-auto text-zinc-100">{formatDate(reviewDate)}</p>
+
+      <div className="flex flex-col items-center mx-auto">
+        <Rating name="read-only" value={reviewRating} readOnly />
+        <p className="text-sm text-zinc-100">{reviewText}</p>
+      </div>
+
+      <div className="flex space-x-4">
+        <IconButton aria-label="comment">
+          <MapsUgcIcon style={{ fontSize: 'large', color: '#f4f4f5' }} />
+        </IconButton>
+
+        <IconButton aria-label="add to favorites">
+          <Badge badgeContent={5}>
+            <FavoriteIcon style={{ fontSize: 'large', color: '#f4f4f5' }} />
+          </Badge>
+        </IconButton>
+
+        <IconButton aria-label="share">
+          <IosShareIcon style={{ fontSize: 'large', color: '#f4f4f5' }} />
+        </IconButton>
+      </div>
+    </div>
   );
 };
 

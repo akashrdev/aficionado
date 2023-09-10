@@ -1,23 +1,4 @@
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import axios from 'axios';
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from 'react';
 
 const NowPlaying = () => {
@@ -53,58 +34,29 @@ const NowPlaying = () => {
   }, []);
 
   return (
-    <Stack
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      direction="column"
-      sx={{
-        m: 1,
-        width: '26ch',
-        border: 'solid',
-        borderRadius: '8%',
-        paddingBottom: '15px',
-        borderColor: 'black',
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <h2>Now Playing</h2>
+    <div className="flex flex-col rounded-lg max-h-96 m-7 bg-zinc-900 text-white">
+      <h1 className="flex justify-center font-bold text-2xl">Now Playing</h1>
 
-      <List
-        sx={{
-          maxHeight: '250px',
-          maxWidth: '250px',
-          overflow: 'auto',
-          '&::-webkit-scrollbar': {
-            // targeting Webkit browsers (Chrome, Safari)
-            display: 'none',
-          },
-          msOverflowStyle: 'none', // targeting IE and Edge
-          scrollbarWidth: 'none',
-        }}
-      >
+      <div className="flex flex-col overflow-y-auto ">
         {nowPlaying.map((movie) => {
           let date = new Date(movie.release_date);
           let formattedDate = `${date.getMonth() + 1}/${date.getDate()}`;
           return (
-            <ListItem>
-              <ListItemText
-                primary={
-                  <a
-                    href={`https://www.google.com/search?q=${movie.original_title}+showtimes+near+me`}
-                    target="blank"
-                  >
-                    {movie.original_title}
-                  </a>
-                }
-                secondary={<Typography>{formattedDate}</Typography>}
-              />
-            </ListItem>
+            <div className="flex flex-col p-4">
+              <a
+                href={`https://www.google.com/search?q=${movie.original_title}+showtimes+near+me`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:underline"
+              >
+                {movie.original_title}
+              </a>
+              <span className="mt-1 text-sm">{formattedDate}</span>
+            </div>
           );
         })}
-      </List>
-    </Stack>
+      </div>
+    </div>
   );
 };
 

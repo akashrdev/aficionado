@@ -76,7 +76,7 @@ function Header() {
               component="a"
               href="/"
               sx={{
-                mr: 'auto', // Align to the left,
+                mr: 'auto',
                 display: { xs: 'none', md: 'flex' },
                 fontFamily: 'monospace',
                 fontWeight: 700,
@@ -93,7 +93,7 @@ function Header() {
               component="a"
               href=""
               sx={{
-                mr: 'auto', // Align to the left,
+                mr: 'auto',
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontFamily: 'monospace',

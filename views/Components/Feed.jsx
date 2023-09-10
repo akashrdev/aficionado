@@ -26,7 +26,7 @@ const Feed = ({ setUserAddedReview, userAddedReview }) => {
   }, [userAddedReview]);
 
   return (
-    <Stack spacing={2}>
+    <div className="flex flex-col space-y-6 mt-4">
       {recentReviews.map((review) => {
         return (
           <Review
@@ -41,7 +41,7 @@ const Feed = ({ setUserAddedReview, userAddedReview }) => {
           />
         );
       })}
-    </Stack>
+    </div>
   );
 };
 

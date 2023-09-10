@@ -12,16 +12,19 @@ import Button from '@mui/material/Button';
 import Login from './Login.jsx';
 import Modal from '@mui/material/Modal';
 
-const InputReview = ({ username, setUserAddedReview }) => {
+const InputReview = ({ username, setUserAddedReview, open, setOpen }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [image, setImage] = useState('');
   const [currentMovie, setCurrentMovie] = useState({});
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(null);
-  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleChange = (event) => {
     let search = event.target.value;
@@ -70,71 +73,47 @@ const InputReview = ({ username, setUserAddedReview }) => {
     setOpen(false);
   };
   return (
-    <Stack
-      spacing={5}
-      sx={{
-        width: 500,
-        border: '1px solid white',
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '5%',
-        marginBottom: '5%',
-      }}
-    >
-      <Autocomplete
-        freeSolo
-        id="movie/tv search"
-        disableClearable
-        options={searchResults}
-        onInputChange={handleChange}
-        onChange={handleSelect}
-        getOptionLabel={(option) => option.original_title}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Leave a review..."
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
-            }}
-          />
-        )}
-      />
+    <div className="flex justify-center w-full space-y-5">
+      <div className="w-full">
+        <Autocomplete
+          freeSolo
+          id="movie/tv search"
+          disableClearable
+          options={searchResults}
+          onInputChange={handleChange}
+          onChange={handleSelect}
+          getOptionLabel={(option) => option.original_title}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Leave a review..."
+              InputProps={{
+                ...params.InputProps,
+                type: 'search',
+                style: { color: '#f4f4f5' },
+              }}
+              InputLabelProps={{
+                style: { color: '#3f3f46' }, // Set the color of the label
+              }}
+              style={{ width: '100%' }}
+              className="w-full"
+            />
+          )}
+          className="w-full"
+        />
+      </div>
 
       {currentMovie.title ? (
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '50%',
-            left: '25%',
-            right: '50%',
-          }}
-        >
-          <Stack
-            direction="column"
-            alignItems="center"
-            spacing={5}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              bgcolor: 'white',
-              borderRadius: '8px',
-            }}
-          >
-            <Textarea
-              name="Outlined"
-              placeholder="Tell us your review.."
-              variant="outlined"
-              rows={5}
-              style={{ width: '75%', resize: 'vertical', marginTop: '5%' }}
+        <div className="fixed inset-0 flex justify-center items-center z-50 bg-zinc-700">
+          <div className="bg-white p-5 rounded-lg shadow-md w-1/2 space-y-5 flex flex-col items-center">
+            <textarea
+              className="border p-2 rounded w-3/4 resize-y bg-zinc-700 text-white"
+              rows="5"
+              placeholder="Tell us your review..."
               onChange={handleReview}
-            />
-            <h4>{currentMovie.title}</h4>
+            ></textarea>
+
+            <h4 className="font-bold text-white">{currentMovie.title}</h4>
             <Rating
               name="simple-controlled"
               value={rating}
@@ -142,18 +121,25 @@ const InputReview = ({ username, setUserAddedReview }) => {
                 setRating(newValue);
               }}
             />
-            <TitleImage image={image} />
-            <Button
-              variant="outlined"
+
+            <div className="w-3/4">
+              <img
+                src={image}
+                alt={currentMovie.title}
+                className="w-full object-cover rounded-lg"
+              />
+            </div>
+
+            <button
+              className="border p-2 rounded bg-gray-200 hover:bg-gray-300"
               onClick={handlePost}
-              style={{ marginBottom: '5%' }}
             >
               Post
-            </Button>
-          </Stack>
-        </Modal>
+            </button>
+          </div>
+        </div>
       ) : null}
-    </Stack>
+    </div>
   );
 };
 
